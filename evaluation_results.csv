@@ -1,0 +1,8 @@
+Metric,Value
+model,MobileNetV2 (unfrozen)
+checkpoint,ecosort_mobilenetv2_unfrozen.pt
+test_images,380
+correct_predictions,339
+accuracy,0.8921052631578947
+macro_f1,0.8775766340231193
+weighted_f1,0.8918424993012735

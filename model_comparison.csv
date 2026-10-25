@@ -1,0 +1,5 @@
+model,checkpoint,accuracy,macro_f1
+SimpleCNN,best_model.pt,0.363,0.305
+MobileNetV2 transfer,best_model_transfer.pt,0.858,0.846
+MobileNetV2 weighted,best_model_transfer_weighted.pt,0.753,0.725
+MobileNetV2 unfrozen,best_model_unfrozen.pt,0.8921052631578947,0.8775766340231193

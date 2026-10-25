@@ -1,0 +1,31 @@
+{
+    "model": "MobileNetV2 (unfrozen)",
+    "checkpoint": "ecosort_mobilenetv2_unfrozen.pt",
+    "test_images": 380,
+    "correct_predictions": 339,
+    "accuracy": 0.8921052631578947,
+    "macro_f1": 0.8775766340231193,
+    "weighted_f1": 0.8918424993012735,
+    "class_order": [
+        "cardboard",
+        "glass",
+        "metal",
+        "paper",
+        "plastic",
+        "trash"
+    ],
+    "preprocessing": {
+        "image_size": "224x224",
+        "color_mode": "RGB",
+        "normalization_mean": [
+            0.485,
+            0.456,
+            0.406
+        ],
+        "normalization_std": [
+            0.229,
+            0.224,
+            0.225
+        ]
+    }
+}
