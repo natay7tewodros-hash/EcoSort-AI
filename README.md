@@ -49,7 +49,7 @@ These labels follow the categories used in the dataset. They do not represent a 
 
 ## The App
 
-The app is built with [Streamlit](https://streamlit.io/) and lives in the `app/` folder.
+The app is built with [Streamlit](https://streamlit.io/) and lives in the `EcoSortAI APP/` folder.
 
 **What it does**
 
@@ -60,8 +60,8 @@ The app is built with [Streamlit](https://streamlit.io/) and lives in the `app/`
 
 **App files**
 
-- `app/app.py` — the Streamlit page (upload, results, warnings).
-- `app/predictor.py` — loads the trained model once and predicts one image at a time.
+- `EcoSortAI APP/app.py` — the Streamlit page (upload, results, warnings).
+- `EcoSortAI APP/predictor.py` — loads the trained model once and predicts one image at a time.
 
 ### Run the app locally
 
@@ -74,14 +74,14 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-streamlit run app/app.py
+streamlit run "EcoSortAI APP/app.py"
 ```
 
 The browser page should open automatically. If it does not, open the local URL printed in the terminal.
 
 If your installed Python version is different, replace `3.12` in the `py` command with that version. On macOS or Linux, use `python3 -m venv .venv` and `source .venv/bin/activate` instead.
 
-> **Note:** `app/predictor.py` looks for the model file `best_model_unfrozen.pt` one folder above `app/`, so keep it in the project root.
+> **Note:** `EcoSortAI APP/predictor.py` looks for the model file `best_model_unfrozen.pt` one folder above `EcoSortAI APP/`, so keep it in the project root.
 
 ## Dataset
 
@@ -156,13 +156,25 @@ The results show promising performance on the selected dataset. They do not esta
 
 ```
 EcoSort-AI/
-├── app/
+├── EcoSortAI APP/
 │   ├── app.py
 │   └── predictor.py
-├── best_model_unfrozen.pt
+├── best_model_unfrozen.pt     (final model used by the app)
+├── best_model.pt              (earlier simple model)
+├── train_unfrozen.py          (trains the final model)
+├── evaluate_test.py           (test-set evaluation)
+├── predict_image.py           (predict one image from the terminal)
+├── class_labels.txt
+├── model_info.json
+├── final_metrics.json
+├── classification_report.csv
+├── confusion_matrix.png
+├── model_comparison.png
 ├── requirements.txt
 └── README.md
 ```
+
+Other files in the repo are the project's data checks, training experiments, results, and documents.
 
 - `best_model_unfrozen.pt` — the trained MobileNetV2 checkpoint (final selected model).
 - `requirements.txt` — Python libraries needed to run the app.
@@ -208,4 +220,3 @@ I acknowledge the creators of TrashNet for making the waste-image dataset availa
 EcoSort AI is my first AI/ML project. I developed it while learning the practical workflow of building a machine-learning system, from dataset preparation through model evaluation, single-image prediction, and a simple web app. It is a foundation for continued learning in computer vision, deep learning, and environmentally focused AI.
 
 *EcoSort AI — exploring how computer vision can contribute to better waste identification.*
-
