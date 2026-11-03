@@ -1,0 +1,249 @@
+1. Project Overview
+
+EcoSort-AI is an exploratory, beginner-led machine learning project designed to investigate the feasibility of using computer vision to recognize and classify waste items using images data modal. The project provides an initial opportunity to apply machine learning concepts to an environmental challenge while developing practical skills in image processing, model training, prediction, and software development. Its longer-term motivation is to examine how AI-assisted waste classification might respond to waste-management needs in Ethiopia, where locally relevant solutions may require consideration of waste composition, collection practices, recycling infrastructure, and operational constraints. Although the project may eventually inform the development of a startup concept, its commercial viability, technical reliability, and real-world impact have not yet been established and remain subjects for future investigation.
+
+To maintain a manageable and scientifically testable development scope, Version 1 adopts a deliberately software-only approach. The system will accept a user-uploaded photograph containing a single waste item, process the image through a machine learning model, and display the predicted waste category. This constrained design establishes a baseline for evaluating the model’s classification performance and identifying limitations before introducing more complex functionality. Relevant evaluation considerations include the quality and representativeness of the training data, classification accuracy across waste categories, robustness to variations in lighting and background, and the model’s ability to handle unfamiliar or ambiguous images. A predicted category should be understood as a model-generated estimate rather than a guaranteed correct classification.
+
+Physical smart bins, sensors, robotic mechanisms, automated waste separation, and integration with municipal waste-management infrastructure are explicitly excluded from Version 1. These capabilities would introduce additional hardware, engineering, safety, maintenance, and deployment requirements that are beyond the current project scope. The immediate objective is therefore not to claim an operational waste-management solution, but to develop and assess a foundational AI prototype. Evidence from this initial stage can guide subsequent decisions about technical improvements, local relevance, scalability, and whether further research or commercial development is justified.
+
+2. Statement of the Problem
+
+Effective waste management depends partly on the proper identification and separation of waste materials. In practice, distinguishing between categories such as plastic, paper, glass, metal, and organic waste can be difficult, particularly when materials have similar appearances or are mixed with other substances. In Ethiopia, improving waste segregation and recycling remains an important environmental concern. However, the usefulness of any proposed technological solution depends on local waste-management practices, the availability of suitable data, and the conditions under which the solution will be used.
+
+Image classification offers one possible approach to assisting users in identifying waste materials. A Convolutional Neural Network (CNN) can learn visual patterns from labelled images and use those patterns to predict the category of a new image. Nevertheless, the accuracy of such a model depends on the quality, quantity, and diversity of its training data. Images collected under controlled conditions may not adequately represent waste photographed in everyday environments, where lighting, backgrounds, image quality, and material appearance can vary considerably.
+
+The main problem addressed by EcoSort AI is whether a CNN-based model can classify selected waste categories from uploaded images with an acceptable level of accuracy. The project will develop a simple application that accepts an image of one waste item and displays the predicted category. It will also evaluate the model's performance and examine the types of images and waste categories that cause classification errors.
+
+The project does not assume that an image classifier will, by itself, improve waste collection, recycling rates, or environmental outcomes. Rather, it seeks to establish a technical starting point and determine the model's current strengths and limitations. The findings may help guide further development and assess whether image-based waste identification could be useful in the Ethiopian context.
+
+3. Project Objectives
+
+The general and specific objectives of the project present as follow
+
+3.1 General Objective
+
+To design and develop a software-based machine learning prototype, EcoSort AI, that uses computer vision to classify a single waste item from an uploaded image, as an initial step toward exploring AI-assisted waste management solutions relevant to the Ethiopian context.
+
+3.2 Specific Objectives
+
+1.  To collect and organize images of different types of waste for training and testing the model.
+
+2.  To preprocess the collected images so they are suitable for CNN training.
+
+3.  To adopt and train a CNN model to classify images into selected waste categories.
+
+4.  To evaluate the model’s performance using accuracy, precision, recall, and F1-score, where appropriate.
+
+5.  To develop a simple application that allows users to upload an image of a waste item and view its predicted category.
+
+6.  To test the application and identify areas for improvement.
+
+4. Project Scope
+
+The first version of EcoSort AI will focus on developing a simple, software-based waste classification application using a Convolutional Neural Network (CNN). The application will allow a user to upload an image containing a single waste item, analyze the image using the trained CNN model, and display the predicted waste category.
+
+The project will include collecting and preparing image data, training the CNN model, evaluating its performance, and integrating the trained model into a basic user interface. The model will classify only the waste categories selected for the project, depending on the availability of suitable training images. Its performance will be assessed using appropriate evaluation metrics, such as accuracy, precision, recall, and F1-score.
+
+The first version will have the following limitations:
+
+-   It will process one uploaded image containing a single waste item at a time.
+
+-   It will classify waste based on the categories included in the training dataset.
+
+-   It will display the predicted category but will not physically handle or sort waste.
+
+-   It will not include real-time camera detection, multiple-item detection, or video processing.
+
+-   It will not use physical smart bins, sensors, robotics, or automated sorting mechanisms.
+
+-   It will not include integration with municipal waste-management systems or commercial services.
+
+5. Decisions and Research Completed
+
+Task 01 — Define the problem and technical goal
+
+Initial problem hypothesis: people may benefit from assistance identifying waste types; actual need still requires user testing.
+
+Input: one photo of one waste item. Output: predicted class.
+
+Technical success means testing on unseen images and reporting measured performance, not simply getting high training accuracy.
+
+Learning milestone: distinguished overfitting from generalization; a model with better held-out performance is preferable to one that merely memorizes training images.
+
+Task 02 — Compare possible users
+
+We discussed households, schools, waste collectors, shops, and restaurants. Concerns raised included restricted phone use in schools, large mixed loads handled by waste collectors, limited sorting bins and photo-taking effort in households, and varied waste streams in businesses. These were practical hypotheses and observations, not validated user-study results.
+
+After considering restaurant-first and a three-mode app (household / restaurant / shop), we deliberately narrowed Version 1 to household individuals to keep the project manageable. Household demand and user behavior remain untested.
+
+Task 03 — Look at existing approaches
+
+We identified related services/apps as research leads: USA Waste Management, Cal-Waste Recycles Right, Recycle Coach, and Perfect Waste. These show that waste information and sorting guidance products exist, but we have not established that any is an exact equivalent or completed a comprehensive competitor review.
+
+We also looked at public waste-image-classification GitHub projects, including one using the resized TrashNet dataset. This helped us locate a manageable dataset and recognize that a waste classifier is technically feasible to attempt, not that our own model will succeed.
+
+Task 04 — Investigate local relevance
+
+We discussed a 2023 household study in selected areas of Addis Ababa (surveyed in May 2022). Of 244 analyzed responses, 21.3% reported frequent household waste segregation, while 84% expressed willingness to implement segregation. Reported barriers included insufficient space and lack of separate containers. These are findings from that study, not estimates for all Ethiopian households.
+
+We also found research leads concerning waste practices in hotels and commercial establishments. These studies did not demonstrate that an image-classification app would solve the barriers, so user need remains a hypothesis.
+
+Task 05 — Confirm Version 1 scope
+
+We briefly considered four disposal-oriented categories (organic/compostable, recyclable, hazardous, trash/others), then decided to postpone them. They are not equivalent to simple visual labels and some require context not visible in a photograph. We chose to finish a smaller first model using the six original TrashNet labels instead.
+
+6. Dataset Selection and Description
+
+Selected dataset: TrashNet resized, downloaded as dataset-resized.zip and extracted locally. The extraction contained a dataset-resized folder plus a __MACOSX metadata folder; only the dataset folder is relevant for training.
+
+  -------------------------------------------------------------------------------
+  Item No.         Original label      Observed image count   Image File Format
+  ---------------- ------------------- ---------------------- -------------------
+  1                Cardboard           403                    JPEGs
+
+  2                Glass               501                    JPEGs
+
+  3                Metal               410                    JPEGs
+
+  4                Paper               594                    JPEGs
+
+  5                Plastic             482                    JPEGs
+
+  6                Trash               137                    JPEGs
+
+                   TOTAL               2,527                  JPEGs
+  -------------------------------------------------------------------------------
+
+  : Table 1: Dataset Description
+
+Images are JPEGs, commonly 512 × 384 pixels in the resized set. We manually opened folders and observed clean, mostly white backgrounds, recognizable items, and some different viewing angles. We noticed the Trash class includes miscellaneous packaging-like items. These observations are preliminary; we have not yet performed systematic image-quality checks or programmatic inspection.
+
+6.1 Dataset Strengths and Limitations
+
+Strengths: modest download size, labeled images, six straightforward original categories, suitable for learning a first classification workflow.
+
+Class imbalance: Paper has 594 images but Trash only 137; accuracy alone could hide weak performance on the smaller class.
+
+Domain shift risk: clean-background photos may not represent dirty, cluttered, or differently lit household images.
+
+Missing classes: no dedicated food/organic or hazardous class; the app must not claim to recognize all household waste.
+
+Potential leakage risk: visually similar images or multiple views of one object may affect evaluation; inspect splitting strategy before claiming generalization.
+
+License status: the project owner reports that the TrashNet license was already checked in an earlier step. The previous scope file still requested verification; this report records the user-reported completion without claiming an independent re-verification or making new license/legal conclusions. Preserve license and attribution information when publishing.
+
+7. Coding Room: Hands-on Work Completed
+
+Dataset folder inspection: A beginner-friendly Python program was written to inspect the extracted TrashNet folders and count images. The actual program output was not recovered, so successful execution and counts are not claimed here.
+
+Display images from six categories: The Coding Room work displayed sample images from all six classes together, providing a visual comparison of cardboard, glass, metal, paper, plastic and trash.
+
+Inspect image pixels: The inspected image measured 512 × 384 pixels; its NumPy array shape was (384, 512, 3), meaning height, width and three RGB color channels. One sample pixel was [240, 200, 165]. The minimum and maximum pixel values observed were 0 and 253. The program exited successfully (code 0).
+
+Resize an image: A Python image-processing exercise resized one image from 512 × 384 to 128 × 128 pixels and completed successfully (exit code 0). This was a learning exercise, not full dataset preprocessing.
+
+Tools and programming languages: The team has worked with dataset images using Python and machine-learning libraries to train, validate, and test the program. To date, a CNN algorithm has been adapted and customized, and its performance has been measured.
+
+8. Approved Version 1 Requirements
+
+  ----------------------------------------------------------------------------------------
+  Area                Agreed Version 1
+  ------------------- --------------------------------------------------------------------
+  Primary users       Household individuals (not yet validated)
+
+  Input               Upload one image containing one waste item
+
+  Prediction labels   Cardboard, Glass, Metal, Paper, Plastic, Trash
+
+  App                 Simple software interface showing the model prediction
+
+  Dataset             Locally extracted TrashNet resized (2,527 images)
+
+  Evaluation          Held-out test results, per-class metrics, error analysis
+
+  Not included        Food/hazardous classes, multi-item recognition, hardware/smart bin
+
+  Safety              Do not treat predictions as authoritative disposal guidance
+  ----------------------------------------------------------------------------------------
+
+9. Development Plan: Next Stages
+
+1.  Continue dataset inspection in Python — Confirm counts from executed output and check for invalid or duplicate images.
+
+2.  Image preparation: - Learn image arrays, resize/normalize as appropriate, define reliable data splits.
+
+3.  Baseline training:-Choose a manageable beginner-friendly model and train it with recorded settings.
+
+4.  Evaluation: - Measure test performance by class and review mistakes; document limitations.
+
+5.  Software app:-Upload one image and display the predicted TrashNet category.
+
+6.  Documentation: - Write setup instructions, methods, actual results, limitations, and GitHub README.
+
+10. Project Limitations
+
+The first version of EcoSort AI has several limitations that define the boundaries of its development and use.
+
+-   Limited waste categories: The model will classify only the waste categories included in the training dataset. It may not correctly identify waste types that are not represented in the dataset.
+
+-   Single-item image classification: The application will process one uploaded image containing a single waste item at a time. Detecting and classifying multiple waste items in the same image is outside the scope of Version 1.
+
+-   Dependence on image quality: Poor lighting, low image resolution, complex backgrounds, and unusual camera angles may affect the model's classification performance.
+
+-   Dataset limitations: The model's performance depends on the size, quality, balance, and diversity of the available images. If the dataset does not adequately represent real waste items found in Ethiopia, the model may not perform consistently in local settings.
+
+-   Possible classification errors: The CNN model may confuse visually similar materials or incorrectly classify unfamiliar images. Its predictions should not be treated as guaranteed results.
+
+-   Limited real-world evaluation: The initial evaluation will focus on the model's performance using selected test images. Its effectiveness in actual waste collection, household segregation, and recycling environments will not be established without further field testing.
+
+-   No physical waste-sorting functionality: The application will display a predicted waste category but will not physically separate or handle waste. Sensors, smart bins, robotics, and automated sorting mechanisms are excluded from the current version.
+
+-   No established commercial application: Version 1 is a prototype intended to demonstrate and evaluate image-based waste classification. Its commercial viability, scalability, and potential environmental impact have not yet been established.
+
+11. Discussion
+
+11. Discussion
+
+The development of the EcoSort AI Version 1 prototype serves as an initial exploration into computer-vision-based waste classification. The primary goal of this phase was to construct a functional software baseline using a Convolutional Neural Network (CNN) trained on the TrashNet dataset, evaluating its technical feasibility prior to introducing hardware complexity or expanded functionality.
+
+11.1 Technical Performance & Data Characteristics
+
+The decision to utilize the resized TrashNet dataset provided a manageable foundation of 2,527 images across six categories: cardboard (403), glass (501), metal (410), paper (594), plastic (482), and trash (137). While this dataset enabled model adaptation, customization, and early testing, several key data characteristics significantly impact the model's performance and generalization:
+
+- Class Imbalance: The noticeable disparity between classes—such as paper containing 594 images compared to the trash class with only 137 images—creates a potential bias where overall accuracy may mask poorer performance on underrepresented classes. Evaluating the model using per-class precision, recall, and F1-scores rather than overall accuracy alone is critical for identifying these blind spots[cite: 1].
+
+- Visual Conditions & Domain Shift: TrashNet images feature mostly clean, uniform white backgrounds and well-lit single items[cite: 1]. In real-world environments, household waste photos present significant domain shift—varying light levels, complex or cluttered backgrounds, partially degraded items, and different viewing angles—which will likely reduce classification accuracy when deployed outside controlled settings[cite: 1].
+
+- Ambiguity of the "Trash" Class: The miscellaneous nature of the "Trash" class introduces higher inter-class variance, making visual pattern extraction less distinct compared to well-defined categories like glass or cardboard[cite: 1].
+
+11.2 Architectural & Scope Choices
+
+Version 1 deliberately constrained the system scope to single-item, static photo uploads via a simple software user interface[cite: 1]. Excluding real-time video processing, multi-item bounding-box detection, smart bins, and robotic sorting mechanism allowed the development focus to remain strictly on model training, validation, and error analysis[cite: 1]. While this simplifies early development, it means the prototype cannot yet directly address complex mixed-waste streams or operate autonomously in a municipal setting[cite: 1].
+
+11.3 Local Context and Practical Relevance in Ethiopia
+
+While survey evidence from Addis Ababa indicates strong public willingness toward household waste segregation (84%), practical adoption remains limited (21.3%) due to structural barriers such as lack of space and separate collection infrastructure[cite: 1]. Image classification alone cannot resolve physical infrastructure deficits[cite: 1]. Moreover, the current model lacks dedicated categories for organic/compostable waste and hazardous materials—both of which are highly relevant to Ethiopian household waste streams[cite: 1]. Therefore, while AI-assisted identification can offer educational value and user guidance, its ultimate operational utility depends heavily on alignment with local waste collection practices and recycling facilities[cite: 1].
+
+12. Conclusion
+
+Based on the experimental results, the CNN-based EcoSort AI waste classification model demonstrates promising potential for identifying waste categories from images. However, the observed performance should be interpreted within the limitations of the current dataset, experimental setup, and evaluation conditions. Further investigation is necessary to establish the model’s reliability and suitability for practical waste classification.
+
+Future improvements should focus on evaluating the model using a wider variety of images, including images with different file formats, lighting conditions, backgrounds, and levels of distortion. Increasing the size and diversity of the dataset, ensuring adequate representation of each waste category, and expanding the number of categories could improve the model’s ability to generalize to previously unseen images. In addition, image preprocessing procedures should be clearly defined and consistently applied according to the characteristics of the collected data.
+
+Further research should also compare different CNN architectures and training configurations to identify the most suitable model for the project’s objectives and computational resources. Particular attention should be given to the relevance of the selected waste categories and the characteristics of the Ethiopian context. Finally, future evaluations should report experimental settings, performance metrics, and limitations transparently and establish consistent benchmarking procedures to support reproducibility and meaningful comparisons. These steps would provide a stronger foundation for assessing EcoSort AI’s practical potential and guiding its future development.
+
+13. Future Directions
+
+Version 2 may add organic and hazardous classes, more realistic images, improved performance, Ethiopia-specific guidance, and investigation of a smart bin. A possible startup would require separate evidence on user needs, collection infrastructure, costs, competitors, and adoption. These are ideas to research, not established results.
+
+14. References
+
+Adefris, W., Damene, S., & Satyal, P. (2023). Household practices and determinants of solid waste segregation in Addis Ababa city, Ethiopia. Humanities and Social Sciences Communications, 10, Article 516. https://doi.org/10.1057/s41599-023-01982-7
+
+Kassahun, S. K., Assefa, B., Henzler, K., Weißert, J., Oteng-Ababio, M., Admassu, M., Mohammed-Amin, I., & Tesfahun, G. (2025). Firsthand report on solid waste management practice in the major town of Addis Ababa-Adama economic corridor, Ethiopia. Heliyon, 11(2), Article e41699. https://doi.org/10.1016/j.heliyon.2025.e41699
+
+Lammi, D. K., & Tesfaye, Z. (2021). An exploration of environmental practices in the hospitality industry: Evidence from hotels in Addis Ababa, Ethiopia. Journal of Environmental Management and Tourism, 12(2), 357–370. https://doi.org/10.14505//jemt.v12.2(50).05
+
+Thung, G. (n.d.). Trashnet [Dataset and source code]. GitHub. Retrieved October 25, 2026, from https://github.com/garythung/trashnet
+
+Yang, M., & Thung, G. (2016). Classification of trash for recyclability status [CS229 project report, Stanford University]. https://cs229.stanford.edu/proj2016/report/ThungYang-ClassificationOfTrashForRecyclabilityStatus-report.pdf
